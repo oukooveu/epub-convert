@@ -1,5 +1,7 @@
 # epub-convert
 
+Convert all e-book files in given directory to choosen format (mobi by default).
+
 ## Build
 ```
 docker build -t epub-convert:latest .
@@ -7,7 +9,7 @@ docker build -t epub-convert:latest .
 
 ## Run
 ```
-docker run --rm -v $(pwd)/books:/books oukooveu/epub-convert
+docker run --rm -v $(pwd)/books:/books epub-convert
 ```
 
 ### Options
