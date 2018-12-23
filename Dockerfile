@@ -1,8 +1,13 @@
-FROM alpine:latest
+FROM ubuntu
 
-RUN apk update && apk add calibre
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN mkdir -p /books
-ADD . /books
+RUN apt-get update && \
+  apt-get install -y calibre && \
+  rm -rf /var/lib/apt/lists/* && \
+  apt-get autoremove -y
 
-ENTRYPOINT ebook-convert /books/
+VOLUME ["/books"]
+COPY ./entrypoint.sh /
+
+ENTRYPOINT ["/entrypoint.sh", "/books"]
